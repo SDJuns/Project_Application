@@ -1,6 +1,31 @@
 # main_page.py
 import streamlit as st
 import pandas as pd
+import gdown
+import os
+
+# GitHub Release 또는 Google Drive 모델 파일 URL
+model_url = "https://github.com/SDJuns/Project_Application/releases/download/model_catboost/catboost_model_v2.bin" 
+model_path = "catboost_model_v2.bin"  # 다운로드할 모델 파일 경로
+
+# 모델 다운로드 함수
+def download_model(url, save_path):
+    if not os.path.exists(save_path):  # 모델 파일이 없는 경우에만 다운로드
+        st.info("Downloading model file. Please wait...")
+        try:
+            gdown.download(url, save_path, quiet=False)
+            st.success("Model downloaded successfully!")
+        except Exception as e:
+            st.error(f"Failed to download model. Error: {e}")
+            raise e
+
+# 모델 다운로드
+try:
+    download_model(model_url, model_path)
+except Exception as e:
+    st.error("Model could not be downloaded. Please check the URL and try again.")
+    st.stop()  # 다운로드 실패 시 앱 중단
+
 
 # Streamlit app UI setup
 st.title("여행지 추천 인공지능✈️")
@@ -150,4 +175,4 @@ if st.button("추천받기✈️"):
         # 데이터 저장 후 추천 페이지로 이동
         st.session_state.traveler = traveler
         # 추천 페이지로 이동
-        st.switch_page("/Users/sindongjun/ProjectApplication/pages/Recommendation.py")
+        st.switch_page("Recommendation.py")
