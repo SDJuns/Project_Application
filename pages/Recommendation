@@ -2,14 +2,26 @@
 import streamlit as st
 import pandas as pd
 from catboost import CatBoostRegressor, Pool, CatBoostError
+import os
 
-# Load pre-trained model
-model_path = '/Users/sindongjun/ProjectApplication/catboost_model_v2.bin'
+# 모델 파일 경로
+model_path = "catboost_model_v2.bin"
+
+# 모델 파일 존재 여부 확인 및 로드
+if not os.path.exists(model_path):
+    st.error("모델 파일이 존재하지 않습니다. 메인 페이지를 통해 모델 파일을 다운로드하세요.")
+    st.stop()
+
 model = CatBoostRegressor()
-model.load_model(model_path)
+try:
+    model.load_model(model_path)
+    st.success("모델이 성공적으로 로드되었습니다!")
+except CatBoostError as e:
+    st.error(f"모델을 로드하는 중 오류가 발생했습니다: {e}")
+    st.stop()
 
 # Streamlit app UI setup
-st.title("당신에게 추천드릴 여행지는 바로 !")
+st.title("당신에게 추천드릴 여행지는 바로!")
 
 # Check if 'traveler' data exists in session state
 if "traveler" in st.session_state:
@@ -25,7 +37,6 @@ if "traveler" in st.session_state:
 
     if user_region and user_city:
         filtered_area_names = df_train[(df_train['INTEGRATED_REGION'] == user_region) & (df_train['INTEGRATED_CITY'] == user_city)]['VISIT_AREA_NM'].unique()
-
     else:
         filtered_area_names = area_names
 
@@ -74,7 +85,7 @@ if "traveler" in st.session_state:
         if st.button("선택한 여행지 일정에 추가"):
             st.session_state.selected_destinations = selected_destinations
             st.success("선택한 여행지가 일정에 추가되었습니다!")
-            st.switch_page(page="/Users/sindongjun/ProjectApplication/pages/Planner.py")
+            st.switch_page(page="Planner.py")
 
     except CatBoostError as e:
         st.warning(f"예측을 수행하는 동안 오류가 발생했습니다: {e}")
