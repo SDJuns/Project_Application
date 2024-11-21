@@ -1,3 +1,5 @@
+pip install gdown
+
 # main_page.py
 import streamlit as st
 import pandas as pd
