@@ -179,4 +179,4 @@ if st.button("추천받기✈️"):
         # 데이터 저장 후 추천 페이지로 이동
         st.session_state.traveler = traveler
         # 추천 페이지로 이동
-        st.switch_page("Recommendation.py")
+        st.switch_page("pages/Recommendation.py")
