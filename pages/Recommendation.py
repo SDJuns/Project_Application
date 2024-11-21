@@ -85,7 +85,7 @@ if "traveler" in st.session_state:
         if st.button("선택한 여행지 일정에 추가"):
             st.session_state.selected_destinations = selected_destinations
             st.success("선택한 여행지가 일정에 추가되었습니다!")
-            st.switch_page(page="Planner.py")
+            st.switch_page(page="pages/Planner.py")
 
     except CatBoostError as e:
         st.warning(f"예측을 수행하는 동안 오류가 발생했습니다: {e}")
