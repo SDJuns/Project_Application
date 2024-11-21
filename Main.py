@@ -3,6 +3,21 @@ import streamlit as st
 import pandas as pd
 import requests
 import os
+import subprocess
+import sys
+
+# 필요한 라이브러리 자동 설치
+def install_packages():
+    required_packages = ["catboost", "requests"]
+    for package in required_packages:
+        try:
+            __import__(package)
+        except ImportError:
+            st.info(f"Installing {package}...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# 설치 함수 실행
+install_packages()
 
 # GitHub Release 또는 Google Drive 모델 파일 URL
 model_url = "https://github.com/SDJuns/Project_Application/releases/download/model_catboost/catboost_model_v2.bin" 
