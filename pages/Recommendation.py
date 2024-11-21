@@ -15,9 +15,9 @@ if not os.path.exists(model_path):
 model = CatBoostRegressor()
 try:
     model.load_model(model_path)
-    st.success("모델이 성공적으로 로드되었습니다!")
+    # st.success("모델이 성공적으로 로드되었습니다!")
 except CatBoostError as e:
-    st.error(f"모델을 로드하는 중 오류가 발생했습니다: {e}")
+    # st.error(f"모델을 로드하는 중 오류가 발생했습니다: {e}")
     st.stop()
 
 # Streamlit app UI setup
