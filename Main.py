@@ -1,9 +1,7 @@
-pip install gdown
-
 # main_page.py
 import streamlit as st
 import pandas as pd
-import gdown
+import requests
 import os
 
 # GitHub Release 또는 Google Drive 모델 파일 URL
@@ -15,7 +13,11 @@ def download_model(url, save_path):
     if not os.path.exists(save_path):  # 모델 파일이 없는 경우에만 다운로드
         st.info("Downloading model file. Please wait...")
         try:
-            gdown.download(url, save_path, quiet=False)
+            response = requests.get(url, stream=True)
+            response.raise_for_status()
+            with open(save_path, "wb") as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
             st.success("Model downloaded successfully!")
         except Exception as e:
             st.error(f"Failed to download model. Error: {e}")
