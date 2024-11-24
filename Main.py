@@ -83,13 +83,13 @@ for column in ['INTEGRATED_REGION', 'INTEGRATED_CITY', 'AGE_GRP', 'GENDER', 'TRA
     elif column == 'TRAVEL_PERIOD':
         traveler[column] = st.selectbox("여행 기간:", list(range(1, 8)))  # 기간 1~7일
     elif column == 'NTvsCT':
-        traveler[column] = st.selectbox("자연vs도시 선호:", [1, 2, 3])
+        traveler[column] = st.selectbox("자연vs도시 선호:", ['자연선호', '상관없음', '도시선호'])
     elif column == 'EXPLODvsCHPLOD':
-        traveler[column] = st.selectbox("비싼숙소vs저렴한숙소 선호:", [1, 2, 3])
+        traveler[column] = st.selectbox("비싼숙소vs저렴한숙소 선호:", ['비싼숙소 선호', '상관없음', '저렴한숙소 선호'])
     elif column == 'RESTvsACT':
-        traveler[column] = st.selectbox("휴식vs활동 선호:", [1, 2, 3])
+        traveler[column] = st.selectbox("휴식vs활동 선호:", ['휴식 선호', '상관없음', '활동 선호'])
     elif column == 'UNKvsK':
-        traveler[column] = st.selectbox("안 알려진 곳vs알려진 곳 선호:", [1, 2, 3])
+        traveler[column] = st.selectbox("안 알려진 곳vs알려진 곳 선호:", ['안 알려진 곳 선호', '상관없음', '알려진 곳 선호호'])
     elif column == 'MVMN_NM':
         traveler[column] = st.selectbox("이동수단:", ['대중교통 등', '자가용'])
     elif column == 'TRAVEL_MISSION_CHECK1':
