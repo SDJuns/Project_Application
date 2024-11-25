@@ -93,7 +93,7 @@ for column in ['INTEGRATED_REGION', 'INTEGRATED_CITY', 'AGE_GRP', 'GENDER', 'TRA
     elif column == 'MVMN_NM':
         traveler[column] = st.selectbox("이동수단:", ['대중교통 등', '자가용'])
     elif column == 'TRAVEL_MISSION_CHECK1':
-        traveler[column] = st.selectbox("여행목적1:", 
+        traveler[column] = st.selectbox("여행 주목적:", 
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 21, 22, 23, 24, 25, 26, 27, 28],
     format_func=lambda x: {
         1: "쇼핑",
@@ -119,7 +119,7 @@ for column in ['INTEGRATED_REGION', 'INTEGRATED_CITY', 'AGE_GRP', 'GENDER', 'TRA
         28: "등반 여행"
     }[x])
     elif column == 'TRAVEL_MISSION_CHECK2':
-        traveler[column] = st.selectbox("여행목적2:", 
+        traveler[column] = st.selectbox("여행 부목적:", 
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 21, 22, 23, 24, 25, 26, 27, 28],
     format_func=lambda x: {
         1: "쇼핑",
